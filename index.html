@@ -3,37 +3,47 @@
 <head>
     <title>Lista de Tarefas</title>
 <style>
-    body {
-    font-family: Arial;
-    background: #f5f5f5;
-
+   body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1f2937, #111827);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
 }
 
     input {
-        padding: 10px;
-        width: 100%;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    
-    input:focus {
-        outline: none;
-        border-color: green;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
 }
 
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
 
-    button {
-        padding: 10px;
-        background-color: green;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
+button {
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.97);
+}
 
    ul {
        list-style: none;
@@ -52,14 +62,14 @@
  
    .container {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: 16px;
     width: 100%;
-    max-width: 400px;
-
+    max-width: 420px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
 .form {
@@ -84,6 +94,8 @@ li div {
 li:hover {
     transform: scale(1.02);
     transition: 0.2s;
+    background: #eef2ff;
+    transform: translateY(-1px);
 }
 
 .concluida .texto-tarefa {
@@ -106,8 +118,71 @@ li:hover {
     opacity: 0.6;
 }
 
-button:active {
-    transform: scale(0.95);
+
+
+.filtros {
+    display: flex;
+    gap: 8px;
+}
+
+.filtros button {
+    background: #ddd;
+    color: #333;
+}
+
+.filtros button.ativo {
+    background: #222;
+    color: white;
+}
+
+li {
+    background: #f9fafb;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#mensagem {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    min-height: 20px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+.sucesso {
+    color: green;
+}
+
+.erro {
+    color: red;
+}
+
+#mensagem.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.checkbox {
+    accent-color: #2563eb;
+    cursor: pointer;
 }
 
   </style>
@@ -120,12 +195,13 @@ button:active {
    <div class="form">
     <input id="tarefa" placeholder="Digite uma tarefa">
     <button id="btnCadastrar">Cadastrar</button>
+<p id="mensagem"></p>
 </div>
 
     <h2>Lista de Tarefas</h2>
 
 <div class="filtros">
-    <button id="filtroTodas">Todas</button>
+    <button id="filtroTodas" class="ativo">Todas</button>
     <button id="filtroConcluidas">Concluídas</button>
     <button id="filtroPendentes">Pendentes</button>
 </div>

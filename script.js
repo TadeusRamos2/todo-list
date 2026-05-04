@@ -36,18 +36,21 @@ e.target.classList.add("ativo");
 
 });
 
-document.getElementById("filtroTodas").addEventListener("click", () => {
+document.getElementById("filtroTodas").addEventListener("click", function() {
     filtroAtual = "todas";
+    atualizarFiltroAtivo(this);
     atualizarLista();
 });
 
-document.getElementById("filtroConcluidas").addEventListener("click", () => {
+document.getElementById("filtroConcluidas").addEventListener("click", function() {
     filtroAtual = "concluidas";
+    atualizarFiltroAtivo(this);
     atualizarLista();
 });
 
-document.getElementById("filtroPendentes").addEventListener("click", () => {
+document.getElementById("filtroPendentes").addEventListener("click", function() {
     filtroAtual = "pendentes";
+    atualizarFiltroAtivo(this);
     atualizarLista();
 });
 
@@ -62,25 +65,38 @@ atualizarLista();
 function cadastrar() {
     let texto = document.getElementById("tarefa").value;
 
+    let botao = document.getElementById("btnCadastrar");
+        botao.textContent = "Salvando...";
+        botao.disabled = true;
+
     if (!texto) {
-        alert("Digite uma tarefa!");
+        mostrarMensagem("Digite uma tarefa!", "erro");
         return;
     }
 
     if (editandoIndex !== null) {
+
         tarefas[editandoIndex] = {
-            texto: texto,
+            texto,
             concluida: tarefas[editandoIndex].concluida
         };
 
         editandoIndex = null;
+
+        document.getElementById("btnCadastrar").textContent = "Cadastrar";
+
+        mostrarMensagem("Tarefa editada com sucesso!", "sucesso");
+
     } else {
-        tarefas.push({
-            texto: texto,
-            concluida: false
-        });
+
+        tarefas.push({ texto, concluida: false });
+
+        mostrarMensagem("Tarefa adicionada com sucesso!", "sucesso");
+
     }
-    document.getElementById("btnCadastrar").textContent = "Cadastrar";
+
+      botao.textContent = "Cadastrar";
+      botao.disabled = false;
 
     salvarNoLocalStorage();
     atualizarLista();
@@ -162,6 +178,25 @@ function alternarConclusao(index) {
 
     salvarNoLocalStorage();
     atualizarLista();
+}
+
+function atualizarFiltroAtivo(botaoClicado) {
+    document.querySelectorAll(".filtros button").forEach(botao => {
+        botao.classList.remove("ativo");
+    });
+
+    botaoClicado.classList.add("ativo");
+}
+
+function mostrarMensagem(texto, tipo) {
+    let mensagem = document.getElementById("mensagem");
+
+    mensagem.textContent = texto;
+    mensagem.className = tipo + " show";
+
+    setTimeout(() => {
+        mensagem.className = "";
+    }, 2000);
 }
 
 function salvarNoLocalStorage() {
