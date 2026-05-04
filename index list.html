@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tarefas</title>
+<style>
+    body {
+    font-family: Arial;
+    background: #f5f5f5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+    input {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    input:focus {
+        outline: none;
+        border-color: green;
+}
+
+
+    button {
+        padding: 10px;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+   ul {
+       list-style: none;
+       padding: 0;
+    }
+
+   li {
+       background: white;
+       margin: 5px;
+       padding: 10px;
+
+       display: flex;
+       justify-content: space-between;
+       align-items: center;    
+}
+ 
+   .container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+li button:first-of-type {
+    background: orange;
+}
+
+li button:last-of-type {
+    background: red;
+}   
+
+li div {
+    display: flex;
+    gap: 5px;
+}
+
+li:hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+}
+
+.concluida .texto-tarefa {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.ativo {
+    background: black;
+    color: white;
+}
+
+.texto-tarefa {
+    transition: all 0.3s ease;
+}
+
+.concluida .texto-tarefa {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.6;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cadastro de Tarefas</h1>
+
+   <div class="form">
+    <input id="tarefa" placeholder="Digite uma tarefa">
+    <button id="btnCadastrar">Cadastrar</button>
+</div>
+
+    <h2>Lista de Tarefas</h2>
+
+<div class="filtros">
+    <button id="filtroTodas">Todas</button>
+    <button id="filtroConcluidas">Concluídas</button>
+    <button id="filtroPendentes">Pendentes</button>
+</div>
+
+    <ul id="lista"></ul>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
