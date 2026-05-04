@@ -23,7 +23,8 @@ Projeto de lista de tarefas desenvolvido com **HTML, CSS e JavaScript puro**.
 
 ## 📸 Preview
 
-<img width="470" height="517" alt="image" src="https://github.com/user-attachments/assets/eb268309-3dab-420c-8912-ab1e7c29bb4f" />
+<img width="527" height="564" alt="image" src="https://github.com/user-attachments/assets/e7c7dfec-80a3-402f-a49e-faae80401223" />
+
 
 
 ## 📚 Aprendizados
